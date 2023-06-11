@@ -19,15 +19,16 @@ public class Battle{
         String[] health = new String[2];
         do{
             try{
-                int actionPerformed = Integer.parseInt(JOptionPane.showInputDialog("Do you want to:\n\n1 - Attack\n2 - Heal"));
+                int actionPerformed = Integer.parseInt(JOptionPane.showInputDialog("Your pokemon LP: " + pokemonHealth + "\nEnemy pokemon LP: " + enemyPokemonHealth +"\nDo you want to:\n\n1 - Attack\n2 - Heal"));
                 switch(actionPerformed){
                     case 1 ->{
                         enemyPokemonHealth-=pokemonAttack;
+                        JOptionPane.showMessageDialog(null, "Your attack did "+ pokemonAttack + " damage to enemy LP.");
                         break; 
                     }
                     case 2 ->{
                         pokemonHealth+=30;
-                        JOptionPane.showMessageDialog(null, "You healed 30LP");
+                        JOptionPane.showMessageDialog(null, "Your pokemon has been healed");
                     }
                     default ->{
                         JOptionPane.showMessageDialog(null, "Invalid Option");
@@ -39,6 +40,9 @@ public class Battle{
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Invalid Option");
             }
+            JOptionPane.showMessageDialog(null, enemyPokemonName + " is attacking!!");
+            pokemonHealth-=enemyPokemonAttack;
+            JOptionPane.showMessageDialog(null, "Your pokemon loss " + enemyPokemonAttack+"LP");
             
         }while(pokemonHealth > 0 && enemyPokemonHealth > 0);
         health[0] = String.valueOf(pokemonHealth);
